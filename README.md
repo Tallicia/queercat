@@ -1,10 +1,18 @@
-# queercat
-a version of lolcat with some lgbtq+ pride flags options
+# queerstyle
+
+a version of queer styling for terminal output akin to lolcat and queercat with some lgbtq+ pride flags options
+
+## Compiling
+
+to compile with gcc: `$ gcc main.c -lm -o queerstyle`  
+
+add the binary to a directory in your `PATH` variable (`/bin` can work) to use from everywhere
 
 ## Usage
-`$ queercat [-f flag_number][-h horizontal_speed] [-v vertical_speed] [--] [FILES...]`  
 
-```
+`$ queerstyle [-f flag_number][-h horizontal_speed] [-v vertical_speed] [--] [FILES...]`  
+
+``` text
 Concatenate FILE(s), or standard input, to standard output.  
 With no FILE, or when FILE is -, read standard input.
 
@@ -21,17 +29,20 @@ With no FILE, or when FILE is -, read standard input.
 ```
 
 ## Adding a flag
+
 ### Step 1: Define the pattern
+
 To add a flag, first create an instance of `pattern_t` for it in the `main.c` file.  
 under the section `/* *** Flags *********************************************************/`
 
 Example:
+
 ``` c
 const pattern_t nonbinary = {
     .name = "nonbinary",
-    .ansii_pattern = {
+    .ansi_pattern = {
         .codes_count = 8,
-        .ansii_codes = {226, 226, 255, 255, 93, 93, 234, 234}
+        .ansi_codes = {226, 226, 255, 255, 93, 93, 234, 234}
     },
     .color_pattern = {
         .stripes_count = 4,
@@ -48,7 +59,9 @@ const pattern_t nonbinary = {
 ```
 
 ### Step 2: Add to the enum
+
 Next, add a value of your flag to the enum `flag_type_t` (just before `FLAG_TYPE_END`)
+
 ``` c
 /* Patterns enum. */
 typedef enum flag_type_e
@@ -64,7 +77,9 @@ typedef enum flag_type_e
 ```
 
 ### Step 3: Handle in the `get_pattern` function
+
 Add a `case` to the `switch` in the function.
+
 ``` c
     switch (flag_type) {
         case FLAG_TYPE_RAINBOW:
@@ -87,13 +102,15 @@ Add a `case` to the `switch` in the function.
 
 ```
 
-### Step 4: Add in the `README.md` and help string.
-**Pay attension to the number it gets from the enum!**
+### Step 4: Add in the `README.md` and help string
+
+**Pay attention to the number it gets from the enum!**
 
 `main.c`
+
 ``` c
 /* *** Constants *****************************************************/
-static char helpstr[] = "\n"
+static char help_str[] = "\n"
                         ...
                         "--flag <d>                , -f <d>: Choose colors to use:\n"
                         "                                    [rainbow: 0, trans: 1, NB: 2, lesbian: 3, \n"
@@ -110,11 +127,8 @@ Extend the line for `--flag` under `Usage` the same way as in the `main.c`.
 
 ### Step 5: Pull request :)
 
-## Compiling
-to compile with gcc: `$ gcc main.c -lm -o queercat`  
-
-add the binary to a directory in your `PATH` variable (`/bin` can work) to use from everywhere
-
 ## Credits
-base for code: <https://github.com/jaseg/lolcat/>  
-Original idea: <https://github.com/busyloop/lolcat/>
+
+base for code:       <https://github.com/jaseg/lolcat/>  
+Original idea:       <https://github.com/busyloop/lolcat/>
+Queer inspiration:   <https://github.com/Elsa002/queercat>

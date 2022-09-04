@@ -1,4 +1,4 @@
-project(queercat)
-add_executable(queercat main.c)
-target_link_libraries(queercat
+project(queerstyle)
+add_executable(queerstyle main.c)
+target_link_libraries(queerstyle
     m)
